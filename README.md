@@ -19,6 +19,13 @@ Developing a chat application with certificate-based authentication can be a cha
 
 The purpose of this project was to learn how to incorporate encryption, Diffie-Hellman key exchange, digital signatures, and SSL certificates into a Python application. Please note that this application is not intended for use in a production environment or for transmitting sensitive data. As such, the GUI may be unattractive and simplified, and some important security considerations may not have been addressed. This application should not be used for sensitive data.
 
+This project includes the following security features and measures:
+
+1. End-to-end encrypted messaging between clients using Fernet, which is a method that combines AES-128-CBC encryption with a SHA256 HMAC authentication code.
+2. A multi-client version of the Elliptic curve Diffie-Hellman (ECDH) key exchange.
+3. An SSL socket connection between clients and server, with the server acting as both a server and a certificate authority (CA).
+4. Digital signatures using elliptic curves.
+
 ## Base Points
 
 The Python chat application consists of the following files:
