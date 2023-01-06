@@ -15,6 +15,9 @@ Developing a chat application with certificate-based authentication can be a cha
 3. On the client side, you'll need to implement a way for users to authenticate with the chat server using their certificates. This will likely involve using the Python SSL library to establish secure connections to the server.
 4. You'll need to decide on a protocol for your chat application.
 
+# Consideration
+
+The purpose of this project was to learn how to incorporate encryption, Diffie-Hellman key exchange, digital signatures, and SSL certificates into a Python application. Please note that this application is not intended for use in a production environment or for transmitting sensitive data. As such, the GUI may be unattractive and simplified, and some important security considerations may not have been addressed. This application should not be used for sensitive data.
 
 ## Base Points
 
