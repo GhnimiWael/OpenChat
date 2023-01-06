@@ -1,5 +1,9 @@
 # OpenChat - Python chat application 
 
+<p align="center" width="100%">
+    <img width="60%"src="https://i.imgur.com/vp7dkmA.gif)"> 
+</p>
+
 Simple terminal-based chat application that uses the Python sockets library to communicate between a server and multiple clients
 
 # Summary
