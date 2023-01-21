@@ -40,8 +40,8 @@ The Python chat application consists of the following files:
 - `client.py`: This the folder where you can find the main scripts for the chat client. It handles connecting to the chat server, sending messages, and displaying messages received from other clients.
 - `server.py`: This the folder where you can find the main scripts for the chat server. It listens for incoming connections from clients, handles incoming messages, and broadcasts messages to all connected clients.
 
+# Usage
 
-<aside>
-📢 **This part can be changed on the developing parts**
+To connect to the server, the user must first create a password for encrypting their private key used in digital signatures. Upon initial connection to the server, the user will be presented with options to either create a new chat room, join an existing one by name, or view a list of all active chat rooms.
 
-</aside>
+
