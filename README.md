@@ -48,6 +48,9 @@ This code appears to contain a collection of functions related to public key cry
 #### 1.3. `mk_cert_files.py`
 - The code is implementing functions for creating a certificate authority (CA) and signing certificate requests. The `createCA()` function creates a new private key and certificate request for the CA, and then creates a self-signed certificate for the CA. The private key and certificate are saved to the local file system in PEM format. The `createRequest(origin)` function creates a new private key and certificate request for an origin and saves the private key to the local file system in PEM format. The `signCertificates(req, cacert, cakey)` function creates a new certificate for a given certificate request, using the provided CA certificate and private key, and is valid for 24 hours.
 
+#### 1.4. `createCert.py`
+- This code is a set of functions that can be used to generate a public/private key pair, create a certificate request, and create a certificate. The `createKeyPair()` function takes in a key type (either RSA or DSA) and the number of bits to use in the key, and returns a PKey object with the public/private key pair. The `createCertRequest()` function takes in a PKey object, a digest method (default is sha256), and various name fields such as country, state, organization, etc., and returns an X509Req object with the certificate request. The `createCertificate()` function takes in a certificate request, the issuer's certificate and private key, a serial number, timestamps for when the certificate is valid, and a digest method (default is SHA256), and returns an X509 object with the signed certificate.
+
 ### 2. Server
 This the folder where you can find the main scripts for the chat server. It listens for incoming connections from clients, handles incoming messages, and broadcasts messages to all connected clients.
 
