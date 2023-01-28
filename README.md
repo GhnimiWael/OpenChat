@@ -43,20 +43,16 @@ This the folder where you can find the main scripts for the chat client. It hand
 #### 1.1. `sign.py`:
 This code appears to contain a collection of functions related to public key cryptography and digital signing.
 
-The function `createSignature` takes in two parameters, `pathToPrivateKey` and prehashed. It opens a private key file, and prompts the user to enter a password. It then attempts to use the private key to create a digital signature of the prehashed input using the ECDSA algorithm with SHA256. If the password is incorrect, it will prompt the user again.
-
-The function `verifySignature` takes in three parameters, `serialized_public`, `signature`, and `prehashed`. It loads the public key from the serialized input and verifies the signature of the prehashed input using the ECDSA algorithm with SHA256.
-
-The function `createSerializedKeys` takes in one parameter, `password`, it generates a private/public key pair using the SECP384R1 curve and saves the serialized key pair to private.pem and public.pem
-
-The function `signMessage` takes in three parameters, a socket, `s`, `username`, and `password`. It receives data from the socket in json format, if the data is not empty, it will create a new serialized key pair, sign the message using the private key, and send the username, public key, and signature to the server as a json object.
-
-The function `getPublicKey` takes in one parameter, `pathToPublicKey`, it opens a public key file and returns the serialized public key.
+- The function `createSignature` takes in two parameters, `pathToPrivateKey` and prehashed. It opens a private key file, and prompts the user to enter a password. It then attempts to use the private key to create a digital signature of the prehashed input using the ECDSA algorithm with SHA256. If the password is incorrect, it will prompt the user again.
+- The function `verifySignature` takes in three parameters, `serialized_public`, `signature`, and `prehashed`. It loads the public key from the serialized input and verifies the signature of the prehashed input using the ECDSA algorithm with SHA256.
+- The function `createSerializedKeys` takes in one parameter, `password`, it generates a private/public key pair using the SECP384R1 curve and saves the serialized key pair to private.pem and public.pem
+- The function `signMessage` takes in three parameters, a socket, `s`, `username`, and `password`. It receives data from the socket in json format, if the data is not empty, it will create a new serialized key pair, sign the message using the private key, and send the username, public key, and signature to the server as a json object.
+- The function `getPublicKey` takes in one parameter, `pathToPublicKey`, it opens a public key file and returns the serialized public key.
 
 ### 2. Server
 This the folder where you can find the main scripts for the chat server. It listens for incoming connections from clients, handles incoming messages, and broadcasts messages to all connected clients.
 
-#### 1.1. `sign.py`:
+#### 2.1. `sign.py`:
 This code defines several functions related to digital signatures and key generation using the cryptography library in Python. The main functions are:
 - `createSignature(pathToPrivateKey, prehashed)`: This function takes the path to a private key in PEM format and a pre-hashed message as input, loads the private key, prompts the user for a password, and then uses the private key to create a digital signature of the pre-hashed message using the ECDSA algorithm with a SHA256 hash. It returns the signature.
 - `verifySignature(serialized_public, signature, prehashed)`: This function takes a serialized public key, a signature, and a pre-hashed message as input, loads the public key, and then verifies the signature using the ECDSA algorithm with a SHA256 hash. It returns true if the signature is valid and false otherwise.
