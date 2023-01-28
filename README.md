@@ -42,6 +42,9 @@ This code appears to contain a collection of functions related to public key cry
 - The function `signMessage` takes in three parameters, a socket, `s`, `username`, and `password`. It receives data from the socket in json format, if the data is not empty, it will create a new serialized key pair, sign the message using the private key, and send the username, public key, and signature to the server as a json object.
 - The function `getPublicKey` takes in one parameter, `pathToPublicKey`, it opens a public key file and returns the serialized public key.
 
+#### 1.2. `SSLUtil.py`
+- This code creates a socket connection to a server on localhost at port 9998, creates a certificate request using the 'createRequest' function from 'mk_cert_files' and sends it to the server. It then receives a PEM encoded certificate from the server and writes it to a file called 'client.cert'. The code also includes a function 'initSSLClient' which sets up an SSL socket using the client's private key and certificate, and connects to the server on a specified port. There is also a callback function 'verify_cb' which is called during the SSL connection setup, but it is not defined and would need to be updated for production use.
+
 ### 2. Server
 This the folder where you can find the main scripts for the chat server. It listens for incoming connections from clients, handles incoming messages, and broadcasts messages to all connected clients.
 
