@@ -45,6 +45,9 @@ This code appears to contain a collection of functions related to public key cry
 #### 1.2. `SSLUtil.py`
 - This code creates a socket connection to a server on localhost at port 9998, creates a certificate request using the 'createRequest' function from 'mk_cert_files' and sends it to the server. It then receives a PEM encoded certificate from the server and writes it to a file called 'client.cert'. The code also includes a function 'initSSLClient' which sets up an SSL socket using the client's private key and certificate, and connects to the server on a specified port. There is also a callback function 'verify_cb' which is called during the SSL connection setup, but it is not defined and would need to be updated for production use.
 
+#### 1.3. `mk_cert_files.py`
+- The code is implementing functions for creating a certificate authority (CA) and signing certificate requests. The `createCA()` function creates a new private key and certificate request for the CA, and then creates a self-signed certificate for the CA. The private key and certificate are saved to the local file system in PEM format. The `createRequest(origin)` function creates a new private key and certificate request for an origin and saves the private key to the local file system in PEM format. The `signCertificates(req, cacert, cakey)` function creates a new certificate for a given certificate request, using the provided CA certificate and private key, and is valid for 24 hours.
+
 ### 2. Server
 This the folder where you can find the main scripts for the chat server. It listens for incoming connections from clients, handles incoming messages, and broadcasts messages to all connected clients.
 
@@ -55,6 +58,13 @@ This code defines several functions related to digital signatures and key genera
 - `createSerializedKeys(password)`: This function takes a password as input and generates a new private-public key pair using the SECP384R1 curve. It then serializes the private key and writes it to a file called "private.pem", and serializes the public key and writes it to a file called "public.pem".
 - `signMessage(s, username, password)`: This function takes a socket object, a username, and a password as input, receives data over the socket, generates a new key pair, creates a signature of the received message using the private key, and then sends a JSON object containing the username, the public key, and the signature to the server over the socket.
 - `getPublicKey(pathToPublicKey)`: This function takes the path to a public key in PEM format as input, reads the key from the file, and returns the serialized public key.
+
+#### 2.2. `dh.py`
+- This code is for a secure communication between a client and a server using Elliptic Curve Diffie-Hellman (ECDH) key exchange and AES-128 encryption.
+The `hubExchange` function generates a private key for the server, and using the client's public key, it creates a shared key using ECDH key exchange. It then applies a key derivation function (KDF) to the shared key for AES-128 encryption and sends the public key, ciphertext, initialization vector and salt to the client.
+- The `sendKeyToClient` function encrypts the Fernet key with the shared key and sends it to the client.
+The `getKeyFromHub` function on the client side, which receives the public key, ciphertext, initialization vector and salt from the server, uses the client's private key to recreate the shared key and decrypts the Fernet key using the shared key.
+- The clientCreateKeys function generates a private/public key pair for the client, serializes the keys, and saves them to a file.
 
 ## Usage
 
