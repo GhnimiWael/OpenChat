@@ -53,8 +53,16 @@ The function `signMessage` takes in three parameters, a socket, `s`, `username`,
 
 The function `getPublicKey` takes in one parameter, `pathToPublicKey`, it opens a public key file and returns the serialized public key.
 
-### 2 server
+### 2. Server
 This the folder where you can find the main scripts for the chat server. It listens for incoming connections from clients, handles incoming messages, and broadcasts messages to all connected clients.
+
+#### 1.1. `sign.py`:
+This code defines several functions related to digital signatures and key generation using the cryptography library in Python. The main functions are:
+- `createSignature(pathToPrivateKey, prehashed)`: This function takes the path to a private key in PEM format and a pre-hashed message as input, loads the private key, prompts the user for a password, and then uses the private key to create a digital signature of the pre-hashed message using the ECDSA algorithm with a SHA256 hash. It returns the signature.
+- `verifySignature(serialized_public, signature, prehashed)`: This function takes a serialized public key, a signature, and a pre-hashed message as input, loads the public key, and then verifies the signature using the ECDSA algorithm with a SHA256 hash. It returns true if the signature is valid and false otherwise.
+- `createSerializedKeys(password)`: This function takes a password as input and generates a new private-public key pair using the SECP384R1 curve. It then serializes the private key and writes it to a file called "private.pem", and serializes the public key and writes it to a file called "public.pem".
+- `signMessage(s, username, password)`: This function takes a socket object, a username, and a password as input, receives data over the socket, generates a new key pair, creates a signature of the received message using the private key, and then sends a JSON object containing the username, the public key, and the signature to the server over the socket.
+- `getPublicKey(pathToPublicKey)`: This function takes the path to a public key in PEM format as input, reads the key from the file, and returns the serialized public key.
 
 # Usage
 
