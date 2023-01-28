@@ -26,13 +26,6 @@ This project includes the following security features and measures:
 3. An SSL socket connection between clients and server, with the server acting as both a server and a certificate authority (CA).
 4. Digital signatures using elliptic curves.
 
-# Security issues:
-A potential issue with the current verification process for clients on a server is that the client initially sends their public key to the server. 
-
-To address this, an alternative solution could be implementing a login/registration system for clients, which would generate a public key and store it in a database for the server to check during each challenge. 
-
-Additionally, it has been noted that the SSL certificate verification from the client currently lacks an implemented callback function, and further research is necessary to make this aspect of the verification process secure.
-
 ## Base Points
 
 The Python chat application consists of the following files:
@@ -60,8 +53,13 @@ This code defines several functions related to digital signatures and key genera
 - `signMessage(s, username, password)`: This function takes a socket object, a username, and a password as input, receives data over the socket, generates a new key pair, creates a signature of the received message using the private key, and then sends a JSON object containing the username, the public key, and the signature to the server over the socket.
 - `getPublicKey(pathToPublicKey)`: This function takes the path to a public key in PEM format as input, reads the key from the file, and returns the serialized public key.
 
-# Usage
+## Usage
 
 To connect to the server, the user must first create a password for encrypting their private key used in digital signatures. Upon initial connection to the server, the user will be presented with options to either create a new chat room, join an existing one by name, or view a list of all active chat rooms.
 
+## Security issues:
+A potential issue with the current verification process for clients on a server is that the client initially sends their public key to the server. 
 
+To address this, an alternative solution could be implementing a login/registration system for clients, which would generate a public key and store it in a database for the server to check during each challenge. 
+
+Additionally, it has been noted that the SSL certificate verification from the client currently lacks an implemented callback function, and further research is necessary to make this aspect of the verification process secure.
